@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
-from sklearn.ensemble import ExtraTreesRegressor, RandomForestRegressor
+from sklearn.ensemble import ExtraTreesRegressor, GradientBoostingRegressor, RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import Ridge
 from sklearn.pipeline import Pipeline
@@ -33,6 +33,16 @@ MODEL_CANDIDATES = [
     {
         "name": "RandomForest",
         "params": {"n_estimators": 200, "min_samples_leaf": 2, "max_features": 0.8},
+    },
+    {
+        "name": "GradientBoosting",
+        "params": {
+            "n_estimators": 150,
+            "learning_rate": 0.05,
+            "max_depth": 3,
+            "min_samples_leaf": 2,
+            "max_features": 0.8,
+        },
     },
 ]
 
@@ -62,6 +72,8 @@ def make_regressor(model_name: str, params: dict) -> object:
         return ExtraTreesRegressor(random_state=RANDOM_STATE, n_jobs=-1, **params)
     if model_name == "RandomForest":
         return RandomForestRegressor(random_state=RANDOM_STATE, n_jobs=-1, **params)
+    if model_name == "GradientBoosting":
+        return GradientBoostingRegressor(random_state=RANDOM_STATE, **params)
     raise ValueError(f"Unknown model name: {model_name}")
 
 
@@ -76,7 +88,14 @@ def build_pipeline(features: pd.DataFrame, model_name: str, params: dict):
     categorical_pipeline = Pipeline(
         [
             ("imputer", SimpleImputer(strategy="most_frequent", keep_empty_features=True)),
-            ("encoder", OneHotEncoder(handle_unknown="ignore", min_frequency=2)),
+            (
+                "encoder",
+                OneHotEncoder(
+                    handle_unknown="ignore",
+                    min_frequency=2,
+                    sparse_output=model_name != "GradientBoosting",
+                ),
+            ),
         ]
     )
     preprocessor = ColumnTransformer(
@@ -85,6 +104,7 @@ def build_pipeline(features: pd.DataFrame, model_name: str, params: dict):
             ("categorical", categorical_pipeline, categorical_columns),
         ],
         remainder="drop",
+        sparse_threshold=0.0 if model_name == "GradientBoosting" else 0.3,
     )
     regressor = Pipeline(
         [("preprocessor", preprocessor), ("model", make_regressor(model_name, params))]

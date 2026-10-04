@@ -1,8 +1,9 @@
 model,params,rmse,mae,r2
-ExtraTrees,"{'n_estimators': 200, 'min_samples_leaf': 1, 'max_features': 1.0}",12173.292463244234,3306.6403835383953,0.9694146260767443
-RandomForest,"{'n_estimators': 200, 'min_samples_leaf': 1, 'max_features': 0.8}",19835.880590318473,3539.477322265725,0.9187916563307299
-ExtraTrees,"{'n_estimators': 200, 'min_samples_leaf': 2, 'max_features': 1.0}",20576.12715369556,3497.450930428788,0.9126174020771075
-RandomForest,"{'n_estimators': 200, 'min_samples_leaf': 2, 'max_features': 0.8}",29294.1999504338,3924.850920619654,0.8228827072607968
+ExtraTrees,"{'n_estimators': 200, 'min_samples_leaf': 1, 'max_features': 1.0}",12173.292463244237,3306.6403835383967,0.9694146260767442
+RandomForest,"{'n_estimators': 200, 'min_samples_leaf': 1, 'max_features': 0.8}",19835.880590318473,3539.4773222657254,0.9187916563307299
+ExtraTrees,"{'n_estimators': 200, 'min_samples_leaf': 2, 'max_features': 1.0}",20576.12715369561,3497.4509304287903,0.9126174020771072
+RandomForest,"{'n_estimators': 200, 'min_samples_leaf': 2, 'max_features': 0.8}",29294.199950433896,3924.850920619662,0.8228827072607957
 Ridge,{'alpha': 50.0},42148.13999066941,10200.202379879442,0.6333476187286342
 Ridge,{'alpha': 10.0},42804.032161530326,8439.881831270643,0.621847439282722
 Ridge,{'alpha': 1.0},42888.30344146495,7080.984386562559,0.6203569829646214
+GradientBoosting,"{'n_estimators': 150, 'learning_rate': 0.05, 'max_depth': 3, 'min_samples_leaf': 2, 'max_features': 0.8}",42963.30643846311,6908.974431312735,0.6190279836924857
