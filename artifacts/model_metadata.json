@@ -1,0 +1,36 @@
+{
+  "model_file": "car_price_model.joblib",
+  "target": "MSRP",
+  "selected_model": "ExtraTrees",
+  "selected_params": {
+    "n_estimators": 200,
+    "min_samples_leaf": 1,
+    "max_features": 1.0
+  },
+  "selection_metric": "holdout_rmse",
+  "holdout_metrics": {
+    "rmse": 12173.292463244234,
+    "mae": 3306.6403835383953,
+    "r2": 0.9694146260767443
+  },
+  "training_rows": 11199,
+  "rows_removed_during_cleaning": 715,
+  "feature_columns": [
+    "Make",
+    "Model",
+    "Year",
+    "Engine Fuel Type",
+    "Engine HP",
+    "Engine Cylinders",
+    "Transmission Type",
+    "Driven_Wheels",
+    "Number of Doors",
+    "Market Category",
+    "Vehicle Size",
+    "Vehicle Style",
+    "highway MPG",
+    "city mpg",
+    "Popularity"
+  ],
+  "trained_at_utc": "2026-10-04T13:34:19.412612+00:00"
+}

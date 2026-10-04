@@ -1,0 +1,19 @@
+{
+  "selected_model": "ExtraTrees",
+  "selected_params": {
+    "n_estimators": 200,
+    "min_samples_leaf": 1,
+    "max_features": 1.0
+  },
+  "selection_metric": "holdout_rmse",
+  "holdout_metrics": {
+    "rmse": 12173.292463244234,
+    "mae": 3306.6403835383953,
+    "r2": 0.9694146260767443
+  },
+  "random_state": 42,
+  "test_size": 0.2,
+  "target": "MSRP",
+  "training_rows_after_deduplication": 11199,
+  "exact_duplicate_or_missing_target_rows_removed": 715
+}
